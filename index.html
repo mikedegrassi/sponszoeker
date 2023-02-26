@@ -13,6 +13,11 @@
 <br/>
 <div class="container">
 
+    <div style="display: flex;">
+        <p>Score:</p>
+        <p id="score"></p>
+    </div>
+
     <h1 style="text-align: center">🧽</h1>
     <h2 style="text-align: center">Zoek de spons voor je moeder</h2>
 
@@ -27,7 +32,8 @@
                oninput="uploadedImage.src=window.URL.createObjectURL(this.files[0]); gotResults()">
     </div>
 
-    <img style="border: 3px solid lightgreen" class="uploadedImage hidden" id="uploadedImage" alt="Your uploaded image"/>
+    <img style="border: 3px solid lightgreen" class="uploadedImage hidden" id="uploadedImage"
+         alt="Your uploaded image"/>
 
     <h2 id="label"></h2>
 </div>

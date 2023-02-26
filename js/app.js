@@ -6,6 +6,7 @@ let label = document.getElementById("label");
 const featureExtractor = ml5.featureExtractor('MobileNet', modelLoaded);
 let classifier;
 const synth = window.speechSynthesis
+let score = 0;
 
 const labelOneBtn = document.querySelector("#labelOne");
 const labelTwoBtn = document.querySelector("#labelTwo");
@@ -13,6 +14,9 @@ const trainbtn = document.querySelector("#train");
 const savebtn = document.querySelector("#save");
 const startbtn = document.querySelector("#start");
 const fileDiv = document.getElementById('fileDiv');
+const scoreP = document.getElementById('score');
+
+scoreP.innerHTML = score;
 //
 // labelOneBtn.addEventListener("click", () => classifier.addImage('spons'));
 // labelTwoBtn.addEventListener("click", () => classifier.addImage('soap'));
@@ -63,16 +67,18 @@ function gotResults() {
         classifier.classify(image, (err, result) => {
             if (err) console.log(err)
             label.innerHTML = result[0].label
-            firstResultController(result[0].label);
+            resultController(result[0].label);
         })
     }, 1000);
 
 }
 
-function firstResultController(result) {
+function resultController(result) {
     if (result=== 'spons') {
         speak('Goed, nu kan je beginnen met de afwas');
         image.classList.remove('hidden');
+        score++;
+        scoreP.innerHTML = score;
     } else {
         speak('Dit is volgens mij geen spons');
     }
